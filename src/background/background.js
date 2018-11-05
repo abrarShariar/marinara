@@ -341,6 +341,11 @@ class Controller
     });
 
     timer.once('start', () => {
+      if (this.phase.value === 0) {
+        this.blockSites();
+      } else {
+        this.unblockSites();
+      }
       if (this.notification) {
         this.notification.close();
         this.notification = null;
@@ -423,6 +428,22 @@ class Controller
       return T('pomodoro_count_many', count.toLocaleString());
     }
   }
+
+  blockRequest(details) {
+    return {cancel: true};
+  }
+
+  blockSites() {
+    if(chrome.webRequest.onBeforeRequest.hasListener(this.blockRequest)) {
+      chrome.webRequest.onBeforeRequest.removeListener(this.blockRequest);
+    }
+    chrome.webRequest.onBeforeRequest.addListener(this.blockRequest, {urls: this._settings.focus.listOfBlockSites}, ['blocking']);
+  }
+
+  unblockSites() {
+    chrome.webRequest.onBeforeRequest.removeListener(this.blockRequest);
+  }
+
 }
 
 let history = new History();

@@ -73,6 +73,7 @@ function loadSettingGroup(name, settings, notificationSounds, timerSounds) {
   let desktopNotification = document.getElementById(`${name}-desktop-notification`);
   let newTabNotification = document.getElementById(`${name}-new-tab-notification`);
   let soundsSelect = document.getElementById(`${name}-sounds`);
+  let listOfBlockSites = document.getElementById('blocksite-0');
 
   let timerSoundSelect = document.getElementById(`${name}-timer-sounds`);
   if (timerSoundSelect != null) {
@@ -190,6 +191,7 @@ function getSettingGroup(name) {
   let newTabNotification = document.getElementById(`${name}-new-tab-notification`);
   let notificationSounds = document.getElementById(`${name}-sounds`);
   let timerSounds = document.getElementById(`${name}-timer-sounds`);
+  let blockSites = document.getElementById('blocksite-0');
 
   let soundFile = null;
   if (notificationSounds.selectedIndex > 0) {
@@ -210,9 +212,12 @@ function getSettingGroup(name) {
     }
   }
 
+  let listOfBlockSites = new Array(blockSites.value);
+  
   return {
     duration: duration.value,
     timerSound: timerSound,
+    listOfBlockSites: listOfBlockSites,
     notifications: {
       desktop: desktopNotification.checked,
       tab: newTabNotification.checked,

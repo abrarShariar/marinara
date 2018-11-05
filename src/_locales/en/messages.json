@@ -129,6 +129,14 @@
     "message": "This scheduled Pomodoro was automatically started",
     "description": "Autostart notification message. Shown in browser notifications when the autostart Pomodoro starts."
   },
+  "blocksite_title": {
+    "message": "Sites to block",
+    "description": "Block site section header. Shown on the settings page."
+  },
+  "blocksite_description": {
+    "message": "List of sites to block during focus time.",
+    "description": "Block site setting description. Shown on the settings page."
+  },
   "time": {
     "message": "Time:",
     "description": "Time input label. Shown on the settings page."
